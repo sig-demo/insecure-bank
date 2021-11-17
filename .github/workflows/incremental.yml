@@ -11,7 +11,7 @@ jobs:
       BLACKDUCK_URL: ${{ secrets.BLACKDUCK_URL}}
       BLACKDUCK_API_TOKEN: ${{ secrets.BLACKDUCK_API_TOKEN }}
       POLARIS_FF_ENABLE_COVERITY_INCREMENTAL: true
-      GITHUB_SECRET: ${{ secrets.GITHUB_SECRET }}
+      GH_SECRET: ${{ secrets.GH_SECRET }}
       
     steps:
     - uses: actions/checkout@v2
@@ -30,8 +30,8 @@ jobs:
     # Convert Polaris to SARIF
     - name: polaris_sarif
       run: |
-        node scripts/cov-format-sarif-for-github.js --inputFile .synopsys\polaris\data\coverity\2021.9.0\idir\incremental-results\incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/arthur \home\ $GITHUB_SECRET --outputFile GitHubSarif.json
-        
+        node scripts/cov-format-sarif-for-github.js --inputFile .synopsys/polaris/data/coverity/2021.9.0/idir/incremental-results/incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/arthur /home/ $GH_SECRET --outputFile GitHubSarif.json
+        cat GitHubSarif.json
     # Perform Software Composition Analysis
     - name: Software Composition Analysis with Black Duck
       uses: blackducksoftware/github-action@v2
