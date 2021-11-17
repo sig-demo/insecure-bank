@@ -31,7 +31,12 @@ jobs:
     - name: polaris_sarif
       run: |
         node scripts/SARIF/cov-format-sarif-for-github.js --inputFile incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank /home/ $GH_SECRET --outputFile GitHubSarif.json
-        cat GitHubSarif.json
+        
+ # Upload Polaris findings
+    - name: Upload Polaris results
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: GitHubSarif.json
         
     # Perform Software Composition Analysis
     - name: Software Composition Analysis with Black Duck
