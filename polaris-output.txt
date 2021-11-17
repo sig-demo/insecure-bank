@@ -1,0 +1,229 @@
+D:\Apps\Java\insecure-bank (master -> origin)
+λ polaris analyze -w
++---------------------------------------------------------------------+
+| Polaris Software Integrity Platform (TM) CLI Scan Client.           |
+| Copyright © 2016-2021 Synopsys, Inc. All rights reserved worldwide. |
++---------------------------------------------------------------------+
+
+[INFO] [be6fjktq] Polaris Software Integrity Platform CLI Scan Client version - 1.18.22
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] initialize
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Server: https://demo.polaris.synopsys.com
+[INFO] [be6fjktq] Checking for valid access token...
+[INFO] [be6fjktq] Access token located in environment variable with name 'POLARIS_ACCESS_TOKEN'
+[INFO] [be6fjktq] Access token ok.
+[INFO] [be6fjktq] Checking status...
+[INFO] [be6fjktq] Status ok.
+[INFO] [be6fjktq] Performing requested phase 'analyze' on behalf of 'fastcompany' from 'demo' organization
+[INFO] [be6fjktq] initialize phase took 3.239s.
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] setup
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Checking if configuration file 'polaris.yml' already exists...
+[INFO] [be6fjktq] Configuration file already exists. Getting project name from local configuration file.
+[INFO] [be6fjktq] Project name hdiv/insecure-bank found in local configuration.
+[INFO] [be6fjktq] Using project name 'hdiv/insecure-bank', trying to fetch configuration from configuration service.
+[INFO] [be6fjktq] Project with name hdiv/insecure-bank found in Portal.
+[INFO] [be6fjktq] Trying to get access permission information.
+[INFO] [be6fjktq] Current user has project admin access.
+[INFO] [be6fjktq] Central configuration not found for project hdiv/insecure-bank.
+[INFO] [be6fjktq] Local configuration will be used.
+[INFO] [be6fjktq] Please review the capture build configurations in D:\Apps\Java\insecure-bank\polaris.yml file.
+
+[INFO] [be6fjktq] setup phase took 1.702s.
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] configure
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Loading configuration from configuration context.
+[INFO] [be6fjktq] Source code will be downloaded using https URL
+[INFO] [be6fjktq] You might need to provide the credentials when prompted
+[INFO] [be6fjktq] Project Directory is set to 'D:\Apps\Java\insecure-bank'
+[INFO] [be6fjktq] Validating configuration file...
+[INFO] [be6fjktq] The configuration file is valid.
+[INFO] [be6fjktq] configure phase took 0.974s.
+[INFO] [be6fjktq] ===============================================================================
+[INFO] [be6fjktq] Executing COVERITY
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Coverity - install
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Version 2021.9.0 is still supported but not current. It’s recommended that you update to version 2021.9.3.
+[INFO] [be6fjktq] If the version is set to default in the yml file or is pulled from a central configuration then contact your administrator to update. Otherwise, you can manually update the version in the yml file.
+[INFO] [be6fjktq] Coverity Capture tools already up-to-date.
+[INFO] [be6fjktq] Coverity - install phase took 1.346s.
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Coverity - capture
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Starting capture...
+[INFO] [be6fjktq] Writing configuration to capture directory...
+[INFO] [be6fjktq] Configuration written successfully.
+[INFO] [be6fjktq] Starting Coverity capture...
+[INFO] [be6fjktq] Running clean commands...
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< org.hdiv:insecure-bank >-----------------------
+[INFO] Building Insecure Bank 1.0.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ insecure-bank ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.261 s
+[INFO] Finished at: 2021-11-11T13:58:44-03:00
+[INFO] ------------------------------------------------------------------------
+[WARNING] [be6fjktq] scmUrl found in configuration along with build/filesystem capture methods.
+                        scmUrl is not supported when running build or filesystem capture.
+                        Please update the configuration.
+[INFO] [be6fjktq] Running Coverity capture...
+[INFO] [be6fjktq] Running Coverity build capture...
+Coverity Build Capture (64-bit) version 2021.9.0 on Windows 10 (Unknown Edition number 100), 64-bit (build 19043)
+Internal version numbers: fd8aadda49 p-2021.9-push-681
+
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------------< org.hdiv:insecure-bank >-----------------------
+[INFO] Building Insecure Bank 1.0.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ insecure-bank ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 12 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ insecure-bank ---
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 35 source files to D:\Apps\Java\insecure-bank\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ insecure-bank ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\Apps\Java\insecure-bank\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ insecure-bank ---
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to D:\Apps\Java\insecure-bank\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ insecure-bank ---
+[INFO] Tests are skipped.
+[INFO]
+[INFO] --- maven-war-plugin:2.6:war (default-war) @ insecure-bank ---
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.thoughtworks.xstream.converters.collections.TreeMapConverter (file:/C:/Users/Arthur/.m2/repository/com/thoughtworks/xstream/xstream/1.4.4/xstream-1.4.4.jar) to field java.util.TreeMap.comparator
+WARNING: Please consider reporting this to the maintainers of com.thoughtworks.xstream.converters.collections.TreeMapConverter
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+[INFO] Packaging webapp
+[INFO] Assembling webapp [insecure-bank] in [D:\Apps\Java\insecure-bank\target\insecure-bank]
+[INFO] Processing war project
+[INFO] Copying webapp resources [D:\Apps\Java\insecure-bank\src\main\webapp]
+[INFO] Webapp assembled in [793 msecs]
+[INFO] Building war: D:\Apps\Java\insecure-bank\target\insecure-bank.war
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  25.852 s
+[INFO] Finished at: 2021-11-11T13:59:23-03:00
+[INFO] ------------------------------------------------------------------------
+Emitted 36 Java compilation units (100%) successfully
+
+36 Java compilation units (100%) are ready for analysis
+The cov-build utility completed successfully.
+
+[INFO] [be6fjktq] Running Coverity file system capture...
+Coverity Buildless Capture version 2021.9.0 on Windows 10 (Unknown Edition number 100), 64-bit (build 19043)
+Internal version numbers: fd8aadda49 p-2021.9-push-681
+
+[INFO] Considering listed files for Java, JavaScript, PHP, Python, Ruby, and Web App Configuration.
+[INFO] Finished considering listed files for Java, JavaScript, PHP, Python, Ruby, and Web App Configuration.
+[INFO] Successfully found Java files.
+[INFO] Successfully found JSP (Java) files.
+[INFO] Successfully found JavaScript files.
+[INFO] Successfully found Configuration Files (Web App Configuration) files.
+[INFO] Emitting source group 1 of 4.
+[INFO] Emitting source group 2 of 4.
+[INFO] Emitting source group 3 of 4.
+[INFO] Emitting source group 4 of 4.
+[INFO] Emitted 36 Java source compilation units (100%) successfully.
+[INFO] Emitted 26 Java generated compilation units (100%) successfully.
+[INFO] Emitted 87 JavaScript compilation units (100%) successfully.
+[INFO] Emitted 111 Text data compilation units (100%) successfully.
+Coverity Java Emit version 2021.9.0 on Windows 10 (Unknown Edition number 100), 64-bit (build 19043)
+Internal version numbers: fd8aadda49 p-2021.9-push-681
+
+Coverity Buildless Capture version 2021.9.0 on Windows 10 (Unknown Edition number 100), 64-bit (build 19043)
+Internal version numbers: fd8aadda49 p-2021.9-push-681
+
+[INFO] Scanning the file system for JavaScript files.
+[INFO] Finished scanning the file system for JavaScript files.
+[INFO] Successfully found JavaScript files.
+[INFO] Emitting source group 1 of 1.
+[INFO] Emitted 36 Java source compilation units (100%) successfully.
+[INFO] Emitted 26 Java generated compilation units (100%) successfully.
+[INFO] Emitted 127 JavaScript compilation units (100%) successfully.
+[INFO] Emitted 111 Text data compilation units (100%) successfully.
+Processing webapp archive: D:/Apps/Java/insecure-bank/target/insecure-bank.war
+[STATUS] Compiling 15 JSP files
+|0----------25-----------50----------75---------100|
+****************************************************
+15 out of 15 JSPs (100%) have been processed successfully. See details in D:/Apps/Java/insecure-bank/.synopsys/polaris/data/coverity/2021.9.0/idir/jsp-compilation-log.txt
+2021-11-11T17:02:13Z [INFO] Will interact with cache service at https://demo.polaris.synopsys.com/api/cache
+[INFO] Fetching metadata for 21 Jars
+[INFO] Wrote 21 library entries at D:/Apps/Java/insecure-bank/.synopsys/polaris/data/coverity/2021.9.0/idir/tmp/top-cej-b33dd5c296e65cd15004c7cc7b82dbe6/cmc-3d27b3081eeeac4d6a82eb2ab3eaefbd/cache-file
+2021-11-11T17:02:14Z [INFO] Wrote cache metrics file at D:/Apps/Java/insecure-bank/.synopsys/polaris/data/coverity/2021.9.0/idir/CACHE.metrics.xml
+[INFO] Time spent in cov-manage-cache: 1 s. Exit code: 0
+Done; cov-emit-java took 38s
+[INFO] [be6fjktq] 1 file artifacts were captured for Coverity analysis.
+[INFO] [be6fjktq] 588 translation units were captured for Coverity analysis.
+[INFO] [be6fjktq] Coverity capture successful.
+[INFO] [be6fjktq] Capture completed successfully.
+[INFO] [be6fjktq] Coverity - capture phase took 3m 36.059s.
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Coverity - prepare
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Preparing artifacts for submission...
+[INFO] [be6fjktq] Preparing Coverity artifacts for analysis...
+[INFO] [be6fjktq] Done.
+[INFO] [be6fjktq] Artifacts are now ready to be submitted.
+[INFO] [be6fjktq] Coverity - prepare phase took 0.214s.
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Coverity - analyze
+[INFO] [be6fjktq] -------------------------------------------------------------------------------
+[INFO] [be6fjktq] Submitting Coverity data for analysis...
+[INFO] [be6fjktq] Uploading ".polaris-coverity.zip": 110.98MB
+|0----------25-----------50----------75---------100|
+****************************************************
+[INFO] [be6fjktq] Upload finished after 24.043s (4.6159MB / second)
+[INFO] [be6fjktq] Upload complete.
+[INFO] [be6fjktq] Scheduled Coverity analysis job. Job ID is 'fge5atafhh60d529qqvj3gn0cc'
+[INFO] [be6fjktq] Upload complete.
+Saving CLI Scan Job details to D:\Apps\Java\insecure-bank\.synopsys\polaris\cli-scan.json
+[INFO] [be6fjktq] Waiting for analysis job to finish...
+Job statuses
++-----------+--------------+----------------------------+------------------+
+| Tool Name | Tool Version | Job ID                     | Status           |
++-----------+--------------+----------------------------+------------------+
+| Coverity  | 2021.9.0     | fge5atafhh60d529qqvj3gn0cc | COMPLETED | 100% |
++-----------+--------------+----------------------------+------------------+
+
+[INFO] [be6fjktq] Coverity job completed successfully!
+
+[INFO] [be6fjktq] Coverity - analyze phase took 4m 29.051s.
+Analysis Completed.
+Coverity analysis
+{
+ "JobId": "fge5atafhh60d529qqvj3gn0cc",
+ "Status": "Success"
+}
+Job issue summary
+{
+ "IssuesBySeverity": {
+  "Critical": 0,
+  "High": 20,
+  "Medium": 28,
+  "Low": 38,
+  "Audit": 58
+ },
+ "Total": 144,
+ "NewIssues": 0,
+ "ClosedIssues": 0,
+ "SummaryUrl": "https://demo.polaris.synopsys.com/projects/a9455dab-67a3-45d1-a1a1-bdc2370c07ed/branches/bc2ee2d9-562b-4a3a-b713-c827951c23fc"
+}

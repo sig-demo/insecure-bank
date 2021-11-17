@@ -1,0 +1,47 @@
+version: "1"
+project:
+  name: ${scm.git.repo}
+  branch: ${scm.git.branch}
+  revision:
+    name: ${scm.git.commit}
+    date: ${scm.git.commit.date}
+  scmUrl: "https://github.com/arthur-sig/BankOfInsecurities.git"
+capture:
+  build:
+    cleanCommands:
+    - shell: [mvn, -B, -f, pom.xml, clean]
+    buildCommands:
+    - shell: [mvn, -B, -f, pom.xml, package, -DskipTests=true]
+  fileSystem:
+    ears:
+      extensions: [ear]
+      files:
+      - directory: ${project.projectDir}
+    java:
+      files:
+      - directory: ${project.projectDir}
+    javascript:
+      files:
+      - directory: ${project.projectDir}
+      - excludeRegex: node_modules|bower_components|vendor|[/\\]?plugins[/\\]|[/\\]?resources[/\\]
+    php:
+      files:
+      - directory: ${project.projectDir}
+    python:
+      files:
+      - directory: ${project.projectDir}
+    ruby:
+      files:
+      - directory: ${project.projectDir}
+    wars:
+      extensions: [war]
+      files:
+      - directory: ${project.projectDir}
+analyze:
+  mode: central
+  coverity:
+    cov-analyze: ["--all", "--webapp-security", "--enable-audit-mode"]
+install:
+  coverity:
+    version: default
+serverUrl: https://demo.polaris.synopsys.com
