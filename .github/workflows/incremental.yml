@@ -30,7 +30,7 @@ jobs:
     # Convert Polaris to SARIF
     - name: polaris_sarif
       run: |
-        node scripts/SARIF/cov-format-sarif-for-github.js --inputFile incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank \home\runner\work\ $GH_SECRET --outputFile GitHubSarif.json
+        node scripts/SARIF/cov-format-sarif-for-github.js --inputFile incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank home $GH_SECRET --outputFile GitHubSarif.json
         
  # Upload Polaris findings
     - name: Upload Polaris results
