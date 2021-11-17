@@ -30,9 +30,7 @@ jobs:
     # Convert Polaris to SARIF
     - name: polaris_sarif
       run: |
-        sudo rm -rf /usr/local/lib/node_modules/npm
-        sudo apt install nodejs
-        node scripts/cov-format-sarif-for-github.js --inputFile incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/arthur /home/ $GH_SECRET --outputFile GitHubSarif.json
+        node scrips/SARIF/cov-format-sarif-for-github.js --inputFile incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/arthur /home/ $GH_SECRET --outputFile GitHubSarif.json
         cat GitHubSarif.json
         
     # Perform Software Composition Analysis
