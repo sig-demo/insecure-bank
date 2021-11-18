@@ -1,6 +1,0 @@
-target/insecure-bank.war/resources/js/plugins/datatable/dataTables.bootstrap.js
-src/main/java/org/hdivsamples/controllers/ActivityController.java
-src/main/java/org/hdivsamples/facade/StorageFacadeImpl.java
-target/insecure-bank.war/resources/js/plugins/typeahead/typeahead.js
-src/main/java/org/hdivsamples/facade/StorageFacadeImpl.java
-src/main/java/org/hdivsamples/controllers/DashboardController.java
