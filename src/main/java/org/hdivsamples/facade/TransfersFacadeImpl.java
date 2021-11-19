@@ -8,7 +8,6 @@ import org.hdivsamples.dao.TransferDao;
 import org.hdivsamples.util.InsecureBankUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
 public class TransfersFacadeImpl implements TransfersFacade {
 
