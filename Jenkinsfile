@@ -15,7 +15,8 @@ pipeline {
         
         stage('Análise Black Duck') {
             steps {
-                bat 'echo %BLACKDUCK_URL%
+                bat 'echo %BLACKDUCK_URL%'
+                bat 'echo ${env.BLACKDUCK_URL}'
                 synopsys_detect detectProperties: '--blackduck.url="${env.BLACKDUCK_URL}" --blackduck.access.token="${env.BLACKDUCK_TOKEN}"', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
             }
         }        
