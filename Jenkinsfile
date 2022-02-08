@@ -1,28 +1,27 @@
 pipeline {
     agent any
     tools {
-        maven "MAVEN"
+        // Install the Maven version configured as "M3" and add it to the path.
         jdk "Java11"
+        maven "MAVEN"
     }
+
     stages {
-        stage('Initialize'){
-            steps{
-                echo "PATH = ${M2_HOME}/bin:${PATH}"
-                echo "M2_HOME = /opt/maven"
+        stage('Get Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sig-demo/insecure-bank/'   // Download code from GitHub             
             }
         }
-        stage('Build') {
+        
+        stage('Análise Black Duck') {
             steps {
-               sh 'mvn -B -DskipTests clean package'
-           }
+                synopsys_detect detectProperties: '--blackduck.url=${env.BLACKDUCK_URL} --blackduck.access.token=${env.BLACKDUCK_TOKEN}', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+            }
+        }        
+        stage('Synopsys Polaris') {
+            steps {
+                polaris arguments: 'analyze -w', polarisCli: 'Polaris - Demo'// Run Polaris (SAST) analysis
+            }
         }
-     }
-    post {
-       always {
-          junit(
-        allowEmptyResults: true,
-        testResults: '*/test-reports/.xml'
-      )
-      }
-   } 
+    }
 }
