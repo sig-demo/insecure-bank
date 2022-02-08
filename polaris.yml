@@ -43,5 +43,5 @@ analyze:
     cov-analyze: ["--all", "--webapp-security", "--enable-audit-mode"]
 install:
   coverity:
-    version: default
+    version: 2021.04
 serverUrl: https://demo.polaris.synopsys.com

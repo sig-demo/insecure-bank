@@ -57,7 +57,7 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public List<Account> findAllUsers() {
 
-		String str = "select * from account";
+		String str = "select * from account"; 
 
 		RowMapper<Account> rowMapper = new RowMapper<Account>() {
 			@Override
