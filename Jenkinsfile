@@ -5,6 +5,12 @@ pipeline {
         jdk "Java11"
         maven "MAVEN"
     }
+    
+    environment {
+        BLACKDUCK_URL="BLACKDUCK_URL%"
+        BLACKDUCK_TOKEN="%BLACKDUCK_TOKEN%"
+    }
+
 
     stages {
         stage('Get Code') {
@@ -17,7 +23,7 @@ pipeline {
             steps {
                 bat 'echo %BLACKDUCK_URL%'
                 bat 'echo ${env.BLACKDUCK_URL}'
-                synopsys_detect detectProperties: '', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                synopsys_detect detectProperties: '--blackduck.url={env.BLACKDUCK_URL} --blackduck.token=%BLACKDUCK.TOKEN%', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
             }
         }        
         stage('Synopsys Polaris') {
