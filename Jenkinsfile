@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven "MAVEN"
-        jdk "Java11"
+        jdk "JDK"
     }
     stages {
         stage('Initialize'){
@@ -13,9 +13,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
-              }
+               sh 'mvn -B -DskipTests clean package'
+           }
         }
+     }
     post {
        always {
           junit(
