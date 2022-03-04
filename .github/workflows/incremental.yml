@@ -25,18 +25,18 @@ jobs:
 ###        curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
 ###        unzip -d /tmp -jo polaris_cli-linux64.zip
  ###       /tmp/polaris -c polaris-incremental.yml analyze -w --incremental incremental-files.txt
+         #  URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+       #   FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
+       #   echo $FILES | tr " " "\n" > polaris-files-to-scan.txt
+       #   echo "Files Changed -->"
+      #    cat polaris-files-to-scan.txt
         
     - name: Static Analysis with Polaris - Incremental
    #   if: ${{steps.prescription.outputs.sastScan == 'true' && github.event_name == 'pull_request'}}
       run: |
-          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
-          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
-          echo $FILES | tr " " "\n" > polaris-files-to-scan.txt
-          echo "Files Changed -->"
-          cat polaris-files-to-scan.txt
           curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
           unzip -d /tmp -jo polaris_cli-linux64.zip
-          /tmp/polaris -c polaris-incremental.yml analyze -w --coverity-ignore-capture-failure --incremental polaris-files-to-scan.txt | tee polaris-output.txt    
+          /tmp/polaris -c polaris-incremental.yml analyze -w --coverity-ignore-capture-failure --incremental incremental-files.txt --incremental-threshold 10 | tee polaris-output.txt    
 
       #    export POLARIS_SERVER_URL=${{ env.POLARIS_SERVER_URL}}
        #   export POLARIS_ACCESS_TOKEN=${{ secrets.POLARIS_TOKEN}}
