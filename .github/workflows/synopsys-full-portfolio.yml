@@ -30,3 +30,11 @@ jobs:
       with:
         version: 7
         args: '--blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN'
+        
+   # Perform Interactive Analysis   
+    - name: seeker
+      run: |
+        curl -v -k -o seeker-agent.zip "https://poc10.seeker.synpssys.com/rest/api/latest/installers/agents/binaries/JAVA"
+        unzip seeker-agent.zip
+        export MVN_OPTS=-javaagent:seeker-agent.jar -Dseeker.server.url=https://poc10.seeker.synopsys.com -Dseeker.project.key=insecure-bank
+        mvn test
