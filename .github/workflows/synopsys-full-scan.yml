@@ -29,8 +29,8 @@ jobs:
     - name: Black Duck (SCA)
       run: |
           mvn clean install
-          bash <(curl -s -L https://detect.synopsys.com/detect7.sh) '--blackduck.url=$BLACKDUCK_URL 
-             --blackduck.api.token=$BLACKDUCK_API_TOKEN
-             --detect.project.name=$GITHUB_REPOSITORY
-             --detect.project.version.name=$GITHUB_REF_NAME
+          bash <(curl -s -L https://detect.synopsys.com/detect7.sh) '--blackduck.url=$BLACKDUCK_URL \
+             --blackduck.api.token=$BLACKDUCK_API_TOKEN \
+             --detect.project.name=$GITHUB_REPOSITORY \
+             --detect.project.version.name=$GITHUB_REF_NAME \
              --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING'
