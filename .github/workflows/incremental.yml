@@ -61,5 +61,4 @@ jobs:
       uses: blackducksoftware/github-action@v2
       with:
         version: 7
-        args: '--blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN --detect.blackduck.scan.mode=RAPID
-'
+        args: '--blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN --detect.blackduck.scan.mode=RAPID --detect.policy.check.fail.on.severities=NONE'
