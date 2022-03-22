@@ -18,23 +18,15 @@ jobs:
         distribution: 'adopt'
 
     # Perform Polaris Analysis
-    - name: polaris
+    - name: Polaris (SAST)
       run: |
         curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
         unzip -d /tmp -jo polaris_cli-linux64.zip
         /tmp/polaris analyze -w
 
     # Perform Software Composition Analysis
-    - name: Software Composition Analysis with Black Duck
+    - name: Black Duck (SCA)
       uses: blackducksoftware/github-action@v2
       with:
         version: 7
         args: '--blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN'
-        
-   # Perform Interactive Analysis   
-    - name: seeker
-      run: |
-        curl -v -k -o seeker-agent.zip "https://poc10.seeker.synpssys.com/rest/api/latest/installers/agents/binaries/JAVA"
-        unzip seeker-agent.zip
-        export MVN_OPTS=-javaagent:seeker-agent.jar -Dseeker.server.url=https://poc10.seeker.synopsys.com -Dseeker.project.key=insecure-bank
-        mvn test
