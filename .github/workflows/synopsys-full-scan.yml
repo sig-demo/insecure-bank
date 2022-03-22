@@ -17,6 +17,17 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
+    - name: Polaris (SAST)
+      run: |
+       echo $GITHUB_REPOSITORY
+       echo $GITHUB_REF_NAME
+       echo $GITHUB_REPOSITORY
+       echo $GITHUB_REF_NAME
+       echo ${{ env.GITHUB_REPOSITORY }}
+       echo ${{ env.GITHUB_REF_NAME }}
+       echo ${{ github.GITHUB_REPOSITORY }}
+       echo ${{ github.GITHUB_REF_NAME }}
+       
     # Perform Polaris Analysis
     - name: Polaris (SAST)
       run: |
@@ -29,4 +40,10 @@ jobs:
       uses: blackducksoftware/github-action@v2
       with:
         version: 7
-        args: '--blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN'
+        args: |
+            '--blackduck.url=$BLACKDUCK_URL 
+             --blackduck.api.token=$BLACKDUCK_API_TOKEN
+             --detect.project.name=$GITHUB_REPOSITORY
+             --detect.project.version.name=$GITHUB_REF_NAME
+             --detect.code.location.name=
+             --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING'
