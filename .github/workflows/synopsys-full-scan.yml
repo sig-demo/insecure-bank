@@ -16,17 +16,11 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-
-    - name: Polaris (SAST)
-      run: |
-       echo $GITHUB_REPOSITORY
-       echo $GITHUB_REF_NAME
-       echo $GITHUB_REPOSITORY
-       echo $GITHUB_REF_NAME
        
     # Perform Polaris Analysis
     - name: Polaris (SAST)
       run: |
+        echo "${{ GITHUB_REPOSITORY }}-server"
         curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
         unzip -d /tmp -jo polaris_cli-linux64.zip
         /tmp/polaris analyze -w
@@ -41,5 +35,5 @@ jobs:
              --blackduck.api.token=$BLACKDUCK_API_TOKEN
              --detect.project.name=$GITHUB_REPOSITORY
              --detect.project.version.name=$GITHUB_REF_NAME
-             --detect.code.location.name=
+             --detect.code.location.name=$GITHUB_REPOSITORY+
              --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING'
