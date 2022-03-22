@@ -32,29 +32,28 @@ jobs:
       #    cat polaris-files-to-scan.txt
     - name: Get list of files
       run: git ls-files "./*.java" > files-to-scan.txt
-    - name: test
-      run: echo $GH_SECRET
-    - name: Static Analysis with Polaris - Incremental
+      
+  #  - name: Static Analysis with Polaris - Incremental
    #   if: ${{steps.prescription.outputs.sastScan == 'true' && github.event_name == 'pull_request'}}
-      run: |
-          curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
-          unzip -d /tmp -jo polaris_cli-linux64.zip
-          /tmp/polaris -c polaris-incremental.yml analyze -w --coverity-ignore-capture-failure --incremental files-to-scan.txt | tee polaris-output.txt    
+ #     run: |
+  #        curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+   #       unzip -d /tmp -jo polaris_cli-linux64.zip
+   #       /tmp/polaris -c polaris-incremental.yml analyze -w --coverity-ignore-capture-failure --incremental files-to-scan.txt | tee polaris-output.txt    
 
       #    export POLARIS_SERVER_URL=${{ env.POLARIS_SERVER_URL}}
        #   export POLARIS_ACCESS_TOKEN=${{ secrets.POLARIS_TOKEN}}
        #   export POLARIS_FF_ENABLE_COVERITY_INCREMENTAL=true
     
     # Convert Polaris to SARIF
-    - name: polaris_sarif
-      run: |
-        node synopsys/scripts/SARIF/cov-format-sarif-for-github.js --inputFile .synopsys/polaris/data/coverity/2021.12.1/idir/incremental-results/incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank /home/ $GH_SECRET --outputFile GitHubSarif.json
+  #  - name: polaris_sarif
+ #     run: |
+  #      node synopsys/scripts/SARIF/cov-format-sarif-for-github.js --inputFile .synopsys/polaris/data/coverity/2021.12.1/idir/incremental-results/incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank /home/ $GH_SECRET --outputFile GitHubSarif.json
         
  # Upload Polaris findings
-    - name: Upload Polaris results
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: GitHubSarif.json
+ #   - name: Upload Polaris results
+ #     uses: github/codeql-action/upload-sarif@v1
+  #    with:
+ #       sarif_file: GitHubSarif.json
         
     # Perform Software Composition Analysis
     - name: Software Composition Analysis with Black Duck
