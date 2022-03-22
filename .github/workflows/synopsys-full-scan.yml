@@ -18,17 +18,16 @@ jobs:
         distribution: 'adopt'
        
     # Perform Polaris Analysis
-#    - name: Polaris (SAST)
-#      run: |
-#        echo "${{ github.GITHUB_REPOSITORY }}-server"
-#        curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
-#        unzip -d /tmp -jo polaris_cli-linux64.zip
-#        /tmp/polaris analyze -w
+    - name: Polaris (SAST)
+      run: |
+        echo "${{ github.GITHUB_REPOSITORY }}-server"
+        curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+        unzip -d /tmp -jo polaris_cli-linux64.zip
+        /tmp/polaris analyze -w
 
     # Perform Software Composition Analysis             
     - name: Black Duck (SCA)
       run: |
-          mvn clean install
           bash <(curl -s -L https://detect.synopsys.com/detect7.sh) '--blackduck.url=$BLACKDUCK_URL \
              --blackduck.api.token=$BLACKDUCK_API_TOKEN \
              --detect.project.name=$GITHUB_REPOSITORY \
