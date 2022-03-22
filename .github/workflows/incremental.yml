@@ -32,7 +32,8 @@ jobs:
       #    cat polaris-files-to-scan.txt
     - name: Get list of files
       run: git ls-files "./*.java" > files-to-scan.txt
-      
+    - name: test
+      run: echo $GH_SECRET
     - name: Static Analysis with Polaris - Incremental
    #   if: ${{steps.prescription.outputs.sastScan == 'true' && github.event_name == 'pull_request'}}
       run: |
