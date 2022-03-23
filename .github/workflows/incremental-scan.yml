@@ -1,0 +1,50 @@
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    env:
+      POLARIS_SERVER_URL:  ${{ secrets.POLARIS_SERVER_URL }}
+      POLARIS_ACCESS_TOKEN:  ${{ secrets.POLARIS_ACCESS_TOKEN }}
+      BLACKDUCK_URL: ${{ secrets.BLACKDUCK_URL}}
+      BLACKDUCK_API_TOKEN: ${{ secrets.BLACKDUCK_API_TOKEN }}
+      POLARIS_FF_ENABLE_COVERITY_INCREMENTAL: true
+      GH_SECRET: ${{ secrets.GH_SECRET }}
+      
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        
+# Get the list of files to analyze 
+    - name: Get list of files to scan
+      run: git ls-files "./*.java" > files-to-scan.txt  # Get all *.java files
+      # git --no-pager diff origin/main --name-only > files-to-scan.txt # Get only modified files comparing to the main branch
+      
+ # Running Polaris - Incremental mode     
+    - name: Polaris (SAST) - Incremental
+      #if: ${{steps.prescription.outputs.sastScan == 'true' && github.event_name == 'pull_request'}}
+      run: |
+          curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+          unzip -d /tmp -jo polaris_cli-linux64.zip
+          /tmp/polaris -c polaris-incremental.yml analyze -w --coverity-ignore-capture-failure --incremental files-to-scan.txt | tee polaris-output.txt    
+ # Convert Polaris to SARIF
+    - name: polaris_sarif
+      run: |
+        node synopsys/scripts/SARIF/cov-format-sarif-for-github.js --inputFile .synopsys/polaris/data/coverity/2021.12.1/idir/incremental-results/incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank /home/ $GH_SECRET --outputFile GitHubSarif.json
+        
+ # Upload Polaris findings to GitHub Actions
+    - name: Upload Polaris results
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: GitHubSarif.json
+        
+# Perform Software Composition Analysis
+    - name: Software Composition Analysis with Black Duck
+      uses: blackducksoftware/github-action@v2
+      with:
+        version: 7
+        args: '--blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN --detect.blackduck.scan.mode=RAPID'
