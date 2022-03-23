@@ -5,7 +5,6 @@ project:
   revision:
     name: ${scm.git.commit}
     date: ${scm.git.commit.date}
-  scmUrl: "https://github.com/arthur-sig/BankOfInsecurities.git"
 capture:
   build:
     cleanCommands:
@@ -43,5 +42,5 @@ analyze:
     cov-analyze: ["--all", "--webapp-security", "--enable-audit-mode"]
 install:
   coverity:
-    version: 2021.04
+    version: default
 serverUrl: https://demo.polaris.synopsys.com
