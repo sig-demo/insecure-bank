@@ -23,14 +23,19 @@ jobs:
     - name: Get list of files to scan
       run: git ls-files "./*.java" > files-to-scan.txt  # Get all *.java files
       # git --no-pager diff origin/main --name-only > files-to-scan.txt # Get only modified files comparing to the main branch
+ 
+ # Running Polaris - Incremental mode     
+    - name: Polaris (SAST) - Install local tools
+      run: |
+          curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+          unzip -d /tmp -jo polaris_cli-linux64.zip
+          /tmp/polaris --co analyze.mode=local install
       
  # Running Polaris - Incremental mode     
     - name: Polaris (SAST) - Incremental
       #if: ${{steps.prescription.outputs.sastScan == 'true' && github.event_name == 'pull_request'}}
-      run: |
-          curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
-          unzip -d /tmp -jo polaris_cli-linux64.zip
-          /tmp/polaris -c polaris-incremental.yml analyze -w --coverity-ignore-capture-failure --incremental files-to-scan.txt | tee polaris-output.txt    
+      run: /tmp/polaris analyze -w --coverity-ignore-capture-failure --incremental files-to-scan.txt | tee polaris-output.txt    
+ 
  # Convert Polaris to SARIF
     - name: polaris_sarif
       run: |
