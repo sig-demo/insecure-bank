@@ -25,27 +25,27 @@ jobs:
       # git --no-pager diff origin/main --name-only > files-to-scan.txt # Get only modified files comparing to the main branch
  
  # Running Polaris - Incremental mode     
-    - name: Polaris (SAST) - Install local tools
-      run: |
-          curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
-          unzip -d /tmp -jo polaris_cli-linux64.zip
-          /tmp/polaris --co analyze.mode=local install
+#    - name: Polaris (SAST) - Install local tools
+   #   run: |
+  #        curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+   #       unzip -d /tmp -jo polaris_cli-linux64.zip
+    #      /tmp/polaris --co analyze.mode=local install
       
  # Running Polaris - Incremental mode     
-    - name: Polaris (SAST) - Incremental
+  #  - name: Polaris (SAST) - Incremental
       #if: ${{steps.prescription.outputs.sastScan == 'true' && github.event_name == 'pull_request'}}
-      run: /tmp/polaris analyze -w --coverity-ignore-capture-failure --incremental files-to-scan.txt | tee polaris-output.txt    
+  #    run: /tmp/polaris analyze -w --coverity-ignore-capture-failure --incremental files-to-scan.txt | tee polaris-output.txt    
  
  # Convert Polaris to SARIF
-    - name: polaris_sarif
-      run: |
-        node synopsys/scripts/SARIF/cov-format-sarif-for-github.js --inputFile .synopsys/polaris/data/coverity/2021.12.1/idir/incremental-results/incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank /insecure-bank/ $GH_SECRET --outputFile GitHubSarif.json
+#    - name: polaris_sarif
+#      run: |
+ #       node synopsys/scripts/SARIF/cov-format-sarif-for-github.js --inputFile .synopsys/polaris/data/coverity/2021.12.1/idir/incremental-results/incremental-results.json --repoName sig-demo/insecure-bank --checkoutPath sig-demo/insecure-bank /insecure-bank/ $GH_SECRET --outputFile GitHubSarif.json
         
  # Upload Polaris findings to GitHub Actions
-    - name: Upload Polaris results
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: GitHubSarif.json
+#    - name: Upload Polaris results
+ #     uses: github/codeql-action/upload-sarif@v1
+ #     with:
+  #      sarif_file: GitHubSarif.json
         
 # Perform Software Composition Analysis
     - name: Software Composition Analysis with Black Duck
