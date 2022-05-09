@@ -18,16 +18,15 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/sig-demo/insecure-bank/'   // Download code from GitHub             
             }
         }
-        
-        stage('Análise Black Duck') {
-            steps {
-                synopsys_detect detectProperties: '', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
-            }
-        }        
-        stage('Synopsys Polaris') {
+    stage('Synopsys Polaris') {
             steps {
                 polaris arguments: 'analyze -w', polarisCli: 'Polaris - Demo'// Run Polaris (SAST) analysis
             }
         }
+     stage('Análise Black Duck') {
+            steps {
+                synopsys_detect detectProperties: '', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy'] // Run Black Duck (SCA) analysis
+            }
+        }        
     }
 }
