@@ -22,7 +22,7 @@ jobs:
       run: |
         curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
         unzip -d /tmp -jo polaris_cli-linux64.zip
-        /tmp/polaris analyze -w
+        /tmp/polaris --co project.name=sig-demo/insecure-bank --co project.branch=main analyze -w
 
     # Perform Software Composition Analysis             
     - name: Black Duck (SCA)
