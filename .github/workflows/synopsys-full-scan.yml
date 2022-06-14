@@ -17,10 +17,9 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
        
-    # Perform Polaris Analysis
+    # Perform Polaris Analysis       # echo "${{ github.GITHUB_REPOSITORY }}-server"
     - name: Polaris (SAST)
       run: |
-        echo "${{ github.GITHUB_REPOSITORY }}-server"
         curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
         unzip -d /tmp -jo polaris_cli-linux64.zip
         /tmp/polaris analyze -w
@@ -30,6 +29,6 @@ jobs:
       run: |
           bash <(curl -s -L https://detect.synopsys.com/detect7.sh) '--blackduck.url=$BLACKDUCK_URL \
              --blackduck.api.token=$BLACKDUCK_API_TOKEN \
-             --detect.project.name=$GITHUB_REPOSITORY \
-             --detect.project.version.name=$GITHUB_REF_NAME \
+             --detect.project.name=sig-demo/insecure-bank \
+             --detect.project.version.name=main-HEAD \
              --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING'
