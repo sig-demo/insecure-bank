@@ -17,13 +17,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         
-    - name: Black Duck (SCA)
-      run: |
-          bash <(curl -s -L https://detect.synopsys.com/detect7.sh) '--blackduck.url=$BLACKDUCK_URL \
-             --blackduck.api.token=$BLACKDUCK_API_TOKEN \
-             --detect.project.name=sig-demo/insecure-bank \
-             --detect.project.version.name=main-HEAD \
-             --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING'
        
     # Perform Polaris Analysis       # echo "${{ github.GITHUB_REPOSITORY }}-server"
     - name: Polaris (SAST)
