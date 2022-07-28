@@ -4,7 +4,7 @@ project:
   branch: ${scm.git.branch}
   revision:
     name: ${scm.git.commit}
-    date: ${scm.git.commit.date}
+    date: 20170530T132530Z
 capture:
   build:
     cleanCommands:
