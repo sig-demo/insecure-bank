@@ -23,18 +23,18 @@ jobs:
         distribution: 'adopt'
 
     # Perform Quick Static Analysis Download SIGMA from Artifactory
-    - name: SIGMA
-      run: |
-        wget --user $ARTIFACTORY_USERNAME --password $ARTIFACTORY_PASSWORD $SIGMA_URL
-        chmod +x sigma
-        ./sigma -V
-        ./sigma analyze --format github ./
+  #  - name: SIGMA
+   #   run: |
+   #     wget --user $ARTIFACTORY_USERNAME --password $ARTIFACTORY_PASSWORD $SIGMA_URL
+   #     chmod +x sigma
+   #     ./sigma -V
+   #     ./sigma analyze --format github ./
         
     # Upload SIGMA findings
-    - name: Upload SIGMA results
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: sigma-results.json
+#    - name: Upload SIGMA results
+#      uses: github/codeql-action/upload-sarif@v1
+#      with:
+#        sarif_file: sigma-results.json
 
     # Perform Software Composition Analysis
     - name: Software Composition Analysis with Black Duck
