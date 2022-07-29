@@ -32,4 +32,5 @@ jobs:
              --blackduck.api.token=$BLACKDUCK_API_TOKEN \
              --detect.project.name=sig-demo/insecure-bank \
              --detect.project.version.name=main-HEAD \
-             --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING'
+             --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING
+             --detect.blackduck.signature.scanner.upload.source.mode=true'
